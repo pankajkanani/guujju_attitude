@@ -62,11 +62,13 @@ export default function App() {
     <div>
       <div className="container" ref={downloadRef}>
         <div className="box-centerside">
-          <div className="text">
-            <p>{Text}</p>
-          </div>
-          <div className="author">
-            <h5 onClick={tweetQuote}>@gujju_attitude</h5>
+          <div className="textcontent">
+            <div className="text">
+              <p>{Text}</p>
+            </div>
+            <div className="author">
+              <h5 onClick={tweetQuote}>@gujju_attitude</h5>
+            </div>
           </div>
         </div>
       </div>

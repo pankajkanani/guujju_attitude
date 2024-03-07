@@ -5,12 +5,15 @@
 }
 
  body{
-  background: #141E30;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #243B55, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */  
+  background: #141E30;
+  background: linear-gradient(to right, #243B55, #141E30);
   background-size: 50px 50px;
-  font-family: 'K2D', sans-serif;
+  font-family: "Baloo Bhai 2", sans-serif;
+  font-optical-sizing: revert-layer;
+  font-weight: 600;
+  letter-spacing: 1.1PX;
   display: flex;
+  line-height: initial;
   justify-content: center;
   align-items: center;
   height: calc(100vh - 100px);
@@ -20,15 +23,22 @@
 /*Quotes*/
 
 .box-centerside {
-  width: 400px;
+  width: 512px;
   margin: 0 auto;
-  padding: 4px 15px;
+  padding: 10px 30px;
   font-size: 22px;
   background:#282828;
   text-align: center;
-  box-shadow: 0 6px 6px;
+  /* box-shadow: 0 6px 6px; */
+  aspect-ratio: 1 / 1;
+
   }
 
+  .textcontent {
+    top: 50% !important;
+    transform: translate(0, -50%);
+    position: relative;
+  }
   .text p {
     margin-block-start: 0.5em;
     margin-block-end: 0.5em;
@@ -37,11 +47,17 @@
   }
   
   .author h5 {
-    font-family: cursive;
+    font-family: "Baloo Bhai 2", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
     margin-block-start: 1em;
     margin-block-end: 1em;
     color: gray;
     text-align: center;
+  }
+  .container{
+    background:#282828;
   }
 
   .button-container {
@@ -53,8 +69,11 @@
     margin-top: 50px;
     display: flex;
     flex-direction: column;
+    width: 80%;
+    margin: 15% auto;
   }
   button {
+    border: none !important;
     margin-top: 10px;
     cursor: pointer;
     font-size: 1.2rem;
