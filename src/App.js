@@ -8,14 +8,8 @@ import {
 import React, { useState, useEffect, useRef } from "react";
 
 //const url = "https://twitter-api45.p.rapidapi.com/timeline.php?screenname=";
-const url ="https://sheetdb.io/api/v1/3jgl0btt16g3a/search?index="
-const options = {
-  method: "GET",
-  headers: {
-    "X-RapidAPI-Key": "5c0cd551e1msh9d19075f87da38cp1e637ajsn2740807cb2ef",
-    "X-RapidAPI-Host": "twitter-api45.p.rapidapi.com",
-  },
-};
+const url ="https://pankajkanani.github.io/API/data.json"
+
 export default function App() {
   const downloadRef = useRef();
 
@@ -33,12 +27,12 @@ export default function App() {
 
   //Fetch Quotes from API
   const getQuote = () => {
-    const number = Math.floor(Math.random() * 115) + 1;
-    fetch(url + number, options)
+    //const number = Math.floor(Math.random() * 115) + 1;
+    fetch(url,)
       .then((response) => response.json())
       .then((data) =>
         setQuotes(
-          data[0]
+          data[Math.floor(Math.random() * data.length) + 1]
         )
       );
   };
