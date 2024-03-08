@@ -24,10 +24,9 @@ export default function App() {
   };
   let username = "ckey49";
   const [quotes, setQuotes] = useState([]);
-
+  const [background, setBackground] = useState(['class1', 'class2', 'class3', 'class4', 'class5', 'class6', 'class7']);
   //Fetch Quotes from API
   const getQuote = () => {
-    //const number = Math.floor(Math.random() * 115) + 1;
     fetch(url,)
       .then((response) => response.json())
       .then((data) =>

@@ -2,17 +2,13 @@
   "name": "guuju qoutes",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://pankajkanani.github.io/guujju_attitude",
   "dependencies": {
     "dom-to-image": "^2.6.0",
-    "gh-pages": "^6.1.1",
     "react": "^18.1.0",
     "react-component-export-image": "^1.0.6",
     "react-dom": "^18.1.0"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
