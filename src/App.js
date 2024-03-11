@@ -8,7 +8,7 @@ import {
 import React, { useState, useEffect, useRef } from "react";
 
 //const url = "https://twitter-api45.p.rapidapi.com/timeline.php?screenname=";
-const url ="https://script.google.com/macros/s/AKfycbxVQ8myU84IylGZo6VTyb2rIP9PnO87YABwIsQeI0heihPtkcjqnGAqIfXNwx55aA40vg/exec"
+const url ="https://pankajkanani.github.io/API/data.json"
 
 export default function App() {
   const downloadRef = useRef();
