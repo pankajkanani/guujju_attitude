@@ -8,7 +8,7 @@ import {
 import React, { useState, useEffect, useRef } from "react";
 
 //const url = "https://twitter-api45.p.rapidapi.com/timeline.php?screenname=";
-const url ="https://pankajkanani.github.io/API/data.json"
+const url ="https://script.google.com/macros/s/AKfycbxVQ8myU84IylGZo6VTyb2rIP9PnO87YABwIsQeI0heihPtkcjqnGAqIfXNwx55aA40vg/exec"
 
 export default function App() {
   const downloadRef = useRef();
@@ -22,34 +22,37 @@ export default function App() {
       link.click();
     });
   };
-  let username = "ckey49";
-  const [quotes, setQuotes] = useState([]);
-  const [background, setBackground] = useState(['class1', 'class2', 'class3', 'class4', 'class5', 'class6', 'class7']);
+  const [quotes, setQuotes] = useState([{
+    "key": 3,
+    "value": "જે દિવસે પત્ની જોડે માથાકૂટ થાય તે દિવસે કસ્ટમર કેર વાળી જોડે વાત કરી લેવી,\n\nમાન સન્માન પાછા મળ્યા નો આનંદ થાશે...!!\n\n            😂😂😂😂😂😂"
+    }]);
+  const [quotesdata, setQuotesdata] = useState([]);
   //Fetch Quotes from API
   const getQuote = () => {
     fetch(url,)
       .then((response) => response.json())
       .then((data) =>
-        setQuotes(
-          data[Math.floor(Math.random() * data.length) + 1]
+      setQuotesdata(
+          data
         )
       );
   };
 
+  //data[Math.floor(Math.random() * data.length) + 1]
   useEffect(() => {
     getQuote();
   }, []);
 
   const getNewQuote = () => {
-    getQuote();
+    setQuotes(quotesdata[Math.floor(Math.random() * quotesdata.length) + 1]);
   };
 
   const tweetQuote = () => {
-    const twitterUrl = `https://twitter.com/intent/tweet?text=${quotes.Text} - @gujju_attitude`;
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${quotes.value} - @gujju_attitude`;
     window.open(twitterUrl, "_blank");
   };
 
-  const { Text, index } = quotes;
+  const { value, key } = quotes;
   
   return (
     <div>
@@ -57,7 +60,7 @@ export default function App() {
         <div className="box-centerside">
           <div className="textcontent">
             <div className="text">
-              <p>{Text}</p>
+              <p>{value}</p>
             </div>
             <div className="author">
               <h5 onClick={tweetQuote}>@gujju_attitude</h5>
