@@ -7,7 +7,6 @@ import {
 } from "react-component-export-image";
 import React, { useState, useEffect, useRef } from "react";
 
-//const url = "https://twitter-api45.p.rapidapi.com/timeline.php?screenname=";
 const url ="https://pankajkanani.github.io/API/data.json"
 
 export default function App() {
@@ -15,17 +14,17 @@ export default function App() {
 
   const handleDownloadImage = () => {
     const targetEl = downloadRef.current;
-    domtoimage.toJpeg(targetEl, { quality: 0.95 }).then((dataUrl) => {
+    domtoimage.toJpeg(targetEl, { quality: 0.99 }).then((dataUrl) => {
       let link = document.createElement("a");
       link.download = "gujjujokes.jpeg";
       link.href = dataUrl;
       link.click();
     });
   };
-  const [quotes, setQuotes] = useState([{
-    "key": 3,
-    "value": "જે દિવસે પત્ની જોડે માથાકૂટ થાય તે દિવસે કસ્ટમર કેર વાળી જોડે વાત કરી લેવી,\n\nમાન સન્માન પાછા મળ્યા નો આનંદ થાશે...!!\n\n            😂😂😂😂😂😂"
-    }]);
+  const [quotes, setQuotes] = useState({
+    "key": 1,
+    "value": "વ્હાલા વિદ્યાર્થીઓ,\n\nડરશો નહિ, બિલકુલ ગભરાશો નહિ \nબોર્ડની પરીક્ષા એકદમ સહેલી છે ,\nમે પોતે પણ ચાર વાર આપી છે\n  \n     😂😂😂😂😂"
+    });
   const [quotesdata, setQuotesdata] = useState([]);
   //Fetch Quotes from API
   const getQuote = () => {
@@ -46,13 +45,14 @@ export default function App() {
   const getNewQuote = () => {
     setQuotes(quotesdata[Math.floor(Math.random() * quotesdata.length) + 1]);
   };
-
+  
   const tweetQuote = () => {
-    const twitterUrl = `https://twitter.com/intent/tweet?text=${quotes.value} - @gujju_attitude`;
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${quotes.value.replace(/\n/g, '%0A')} - @gujju_attitude`;
     window.open(twitterUrl, "_blank");
   };
 
   const { value, key } = quotes;
+  //value = value.replace(/\r\n/g, "<br />");
   
   return (
     <div>
