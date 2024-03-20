@@ -23,12 +23,10 @@ export default function App() {
     });
   };
   const whatsApp = () => {
-    const targetEl = downloadRef.current;
-    domtoimage.toJpeg(targetEl, { quality: 0.99 }).then((dataUrl) => {
-      const shareurl = 'whatsapp://send?text='+quotes.value.replace(/\n/g, '%0A')+' '+dataUrl;
+    const shareurl = 'whatsapp://send?text='+quotes.value.replace(/\n/g, '%0A');
       window.open(shareurl, "_blank");
-    });
   };
+
   const [quotes, setQuotes] = useState({
     "key": 1,
     "value": "વ્હાલા વિદ્યાર્થીઓ,\n\nડરશો નહિ, બિલકુલ ગભરાશો નહિ \nબોર્ડની પરીક્ષા એકદમ સહેલી છે ,\nમે પોતે પણ ચાર વાર આપી છે\n  \n     😂😂😂😂😂"
@@ -79,8 +77,9 @@ export default function App() {
       <div className="buttons">
         <button className="newqoutes" onClick={getNewQuote}>New Quote</button>
         <button className="download" onClick={handleDownloadImage}>Download</button>
-        <button className="downloadpng" onClick={() => exportComponentAsPNG(downloadRef)} >Convert To PNG</button>
-        <button className="downloadpng" onClick={whatsApp} >Share on whatsApp</button>
+        {/* <button className="downloadpng" onClick={() => exportComponentAsPNG(downloadRef)} >Convert To PNG</button> */}
+        <button className="downloadpng" onClick={whatsApp} >Share on WhatsApp</button>
+        <button className="downloadpng" onClick={tweetQuote} >Share on Twitter</button>
       </div>
     </div>
   );
