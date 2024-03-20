@@ -7,6 +7,7 @@ import {
 } from "react-component-export-image";
 import React, { useState, useEffect, useRef } from "react";
 
+//const url = "https://twitter-api45.p.rapidapi.com/timeline.php?screenname=";
 const url ="https://pankajkanani.github.io/API/data.json"
 
 export default function App() {
@@ -19,6 +20,13 @@ export default function App() {
       link.download = "gujjujokes.jpeg";
       link.href = dataUrl;
       link.click();
+    });
+  };
+  const whatsApp = () => {
+    const targetEl = downloadRef.current;
+    domtoimage.toJpeg(targetEl, { quality: 0.99 }).then((dataUrl) => {
+      const shareurl = 'whatsapp://send?text='+quotes.value.replace(/\n/g, '%0A')+' '+dataUrl;
+      window.open(shareurl, "_blank");
     });
   };
   const [quotes, setQuotes] = useState({
@@ -72,6 +80,7 @@ export default function App() {
         <button className="newqoutes" onClick={getNewQuote}>New Quote</button>
         <button className="download" onClick={handleDownloadImage}>Download</button>
         <button className="downloadpng" onClick={() => exportComponentAsPNG(downloadRef)} >Convert To PNG</button>
+        <button className="downloadpng" onClick={whatsApp} >Share on whatsApp</button>
       </div>
     </div>
   );
