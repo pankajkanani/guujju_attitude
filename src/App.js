@@ -26,7 +26,7 @@ export default function App() {
     const shareurl = 'whatsapp://send?text='+quotes.value.replace(/\n/g, '%0A');
       window.open(shareurl, "_blank");
   };
-
+  const [numbers, setNumbers] = useState(1);
   const [quotes, setQuotes] = useState({
     "key": 1,
     "value": "વ્હાલા વિદ્યાર્થીઓ,\n\nડરશો નહિ, બિલકુલ ગભરાશો નહિ \nબોર્ડની પરીક્ષા એકદમ સહેલી છે ,\nમે પોતે પણ ચાર વાર આપી છે\n  \n     😂😂😂😂😂"
@@ -49,13 +49,31 @@ export default function App() {
   }, []);
 
   const getNewQuote = () => {
-    setQuotes(quotesdata[Math.floor(Math.random() * quotesdata.length) + 1]);
+    setNumbers(Math.floor(Math.random() * quotesdata.length) + 1);
+    setQuotes(quotesdata[numbers]);
   };
   
+  const getNextQuote = () => {
+    setNumbers(numbers + 1);
+    setQuotes(quotesdata[numbers]);
+  };
+  const getPrevQuote = () => {
+    setNumbers(numbers - 1);
+    setQuotes(quotesdata[numbers]);
+  };
   const tweetQuote = () => {
     const twitterUrl = `https://twitter.com/intent/tweet?text=${quotes.value.replace(/\n/g, '%0A')} - @gujju_attitude`;
     window.open(twitterUrl, "_blank");
   };
+
+  const getnumber = (e) => {
+    console.log(Math.floor(quotesdata.length));
+    if(Math.floor(quotesdata.length) + 1 < e.target.value){
+      setNumbers(0);  
+    }else{
+      setNumbers(Number(e.target.value))
+    }
+  }
 
   const { value, key } = quotes;
   //value = value.replace(/\r\n/g, "<br />");
@@ -75,8 +93,16 @@ export default function App() {
         </div>
       </div>
       <div className="buttons">
-        <button className="newqoutes" onClick={getNewQuote}>New Quote</button>
-        <button className="download" onClick={handleDownloadImage}>Download</button>
+        <div className="text">
+          <input type="text" className="form-control" value={numbers} onChange={getnumber}></input>
+          <input type="text" className="form-control" readOnly value={Math.floor(quotesdata.length)}></input>
+        </div>
+        <div class="d-flex justify-content-between">
+          <button className="newqoutes" disabled={numbers < 1 } onClick={getPrevQuote}><i className="fa fa-backward" aria-hidden="true"></i></button>
+          <button className="newqoutes" disabled={Math.floor(quotesdata.length) < numbers+1} onClick={getNextQuote}><i className="fa fa-fast-forward" aria-hidden="true"></i></button>
+          <button className="newqoutes" onClick={getNewQuote}><i className="fa fa-random" aria-hidden="true"></i></button>
+          <button className="download" onClick={handleDownloadImage}><i className="fa fa-download" aria-hidden="true"></i></button>
+        </div>
         {/* <button className="downloadpng" onClick={() => exportComponentAsPNG(downloadRef)} >Convert To PNG</button> */}
         <button className="downloadpng" onClick={whatsApp} >Share on WhatsApp</button>
         <button className="downloadpng" onClick={tweetQuote} >Share on Twitter</button>
