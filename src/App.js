@@ -8,7 +8,7 @@ import {
 import React, { useState, useEffect, useRef } from "react";
 
 //const url = "https://twitter-api45.p.rapidapi.com/timeline.php?screenname=";
-const url ="https://pankajkanani.github.io/API/data.json"
+const url ="https://script.google.com/macros/s/AKfycbxVQ8myU84IylGZo6VTyb2rIP9PnO87YABwIsQeI0heihPtkcjqnGAqIfXNwx55aA40vg/exec"
 
 export default function App() {
   const downloadRef = useRef();
@@ -93,19 +93,27 @@ export default function App() {
         </div>
       </div>
       <div className="buttons">
-        <div className="text">
-          <input type="text" className="form-control" value={numbers} onChange={getnumber}></input>
-          <input type="text" className="form-control" readOnly value={Math.floor(quotesdata.length)}></input>
+      <div className=" d-flex justify-content-between">
+            <div className="form-group col-6">
+                <input type="text" className="form-control input-group-lg reg_name" value={numbers} onChange={getnumber}></input>
+            </div>
+            <div className="form-group col-6">
+                <input type="text" className="form-control input-group-lg reg_name" readOnly value={Math.floor(quotesdata.length)}></input>
+            </div>
         </div>
-        <div class="d-flex justify-content-between">
+        
+        <div className="d-flex justify-content-between">
           <button className="newqoutes" disabled={numbers < 1 } onClick={getPrevQuote}><i className="fa fa-backward" aria-hidden="true"></i></button>
           <button className="newqoutes" disabled={Math.floor(quotesdata.length) < numbers+1} onClick={getNextQuote}><i className="fa fa-fast-forward" aria-hidden="true"></i></button>
           <button className="newqoutes" onClick={getNewQuote}><i className="fa fa-random" aria-hidden="true"></i></button>
-          <button className="download" onClick={handleDownloadImage}><i className="fa fa-download" aria-hidden="true"></i></button>
         </div>
-        {/* <button className="downloadpng" onClick={() => exportComponentAsPNG(downloadRef)} >Convert To PNG</button> */}
-        <button className="downloadpng" onClick={whatsApp} >Share on WhatsApp</button>
-        <button className="downloadpng" onClick={tweetQuote} >Share on Twitter</button>
+        <div className="d-flex justify-content-between">
+          <button className="downloadpng" onClick={whatsApp} ><i class="fab fa-whatsapp fa-fw fa-xl"></i></button>
+          <button className="downloadpng" onClick={tweetQuote} ><i class="fa-brands fa-x-twitter"></i></button>
+          <button className="download" onClick={handleDownloadImage}><i className="fa fa-download" aria-hidden="true"></i></button>
+          {/* <button className="downloadpng" onClick={() => exportComponentAsPNG(downloadRef)} >Convert To PNG</button> */}
+        </div>
+        
       </div>
     </div>
   );
