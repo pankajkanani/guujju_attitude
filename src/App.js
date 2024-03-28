@@ -39,7 +39,7 @@ export default function App() {
     {"background":"#2BAE66FF", "color":"#FCF6F5FF"},
     {"background":"#990011FF", "color":"#FCF6F5FF"},
   ]);
-  const [colournumber, setColournumber] = useState(1);
+  const [colournumber, setColournumber] = useState(0);
   let [hashtag, setHashtag] = useState("gujju_attitude");
   const [quotes, setQuotes] = useState({
     "key": 1,
@@ -130,7 +130,7 @@ export default function App() {
             <input type="text" className="form-control input-group-lg reg_name" onChange={gethashtag}  value={hashtag}></input>
         </div>
         <div className="form-group col-12">
-        <select onChange={handleFruitChange}> 
+        <select className="form-select form-select-lg mb-3" onChange={handleFruitChange}> 
           {colors.map((color, i) => <option value={i}>{color.background}, {color.color}</option>)}
         </select>
         </div>
