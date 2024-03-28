@@ -27,6 +27,19 @@ export default function App() {
       window.open(shareurl, "_blank");
   };
   const [numbers, setNumbers] = useState(1);
+  const [colors, setColors] = useState([
+    {"background":"#000000", "color":"#FFFFFF"}, 
+    {"background":"#2F3C7E", "color":"#FBEAEB"}, 
+    {"background":"#101820", "color":"#FEE715"}, 
+    {"background":"#990011", "color":"#FCF6F5"}, 
+    {"background":"#00203FFF", "color":"#ADEFD1FF"}, 
+    {"background":"#00246B", "color":"#CADCFC"}, 
+    {"background":"#101820FF", "color":"#FEE715FF"}, 
+    {"background":"#0063B2FF", "color":"#9CC3D5FF"},
+    {"background":"#2BAE66FF", "color":"#FCF6F5FF"},
+    {"background":"#990011FF", "color":"#FCF6F5FF"},
+  ]);
+  const [colournumber, setColournumber] = useState(1);
   let [hashtag, setHashtag] = useState("gujju_attitude");
   const [quotes, setQuotes] = useState({
     "key": 1,
@@ -75,6 +88,9 @@ export default function App() {
   let gethashtag = (e) => {
     setHashtag((e.target.value))
   }
+  let handleFruitChange = (e) => {
+    setColournumber(e.target.value)
+  }
   const getnumber = (e) => {
     console.log(Math.floor(quotesdata.length));
     if(Math.floor(quotesdata.length) + 1 < e.target.value){
@@ -89,14 +105,14 @@ export default function App() {
   
   return (
     <div>
-      <div className="container" ref={downloadRef}>
+      <div className="container" style={{background:colors[colournumber].background}} ref={downloadRef}>
         <div className="box-centerside">
           <div className="textcontent">
             <div className="text">
-              <p>{value}</p>
+              <p style={{color:colors[colournumber].color}}>{value}</p>
             </div>
             <div className="author">
-              <h5 onClick={tweetQuote}>@gujju_attitude</h5>
+              <h5 style={{color:colors[colournumber].color}} onClick={tweetQuote}>@gujju_attitude</h5>
             </div>
           </div>
         </div>
@@ -111,8 +127,13 @@ export default function App() {
             </div>
         </div>
         <div className="form-group col-12">
-                <input type="text" className="form-control input-group-lg reg_name" onChange={gethashtag}  value={hashtag}></input>
-            </div>
+            <input type="text" className="form-control input-group-lg reg_name" onChange={gethashtag}  value={hashtag}></input>
+        </div>
+        <div className="form-group col-12">
+        <select onChange={handleFruitChange}> 
+          {colors.map((color, i) => <option value={i}>{color.background}, {color.color}</option>)}
+        </select>
+        </div>
         
         <div className="d-flex justify-content-between">
           <button className="newqoutes" disabled={numbers < 1 } onClick={getPrevQuote}><i className="fa fa-backward" aria-hidden="true"></i></button>
