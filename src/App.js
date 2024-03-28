@@ -105,7 +105,7 @@ export default function App() {
   
   return (
     <div>
-      <div className="container" style={{background:colors[colournumber].background}} ref={downloadRef}>
+      <div className="container" style={{background:colors[colournumber].background,  border: '15px double '+colors[colournumber].color}}  ref={downloadRef}>
         <div className="box-centerside">
           <div className="textcontent">
             <div className="text">
